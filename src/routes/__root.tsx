@@ -8,6 +8,8 @@ import {
 } from "@tanstack/react-router";
 import { type ReactNode } from "react";
 
+import appCss from "../styles.css?url";
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -75,6 +77,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image:height", content: "630" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&family=VT323&display=swap" },
       { rel: "canonical", href: "https://solez.vercel.app" },
       { rel: "alternate", href: "https://solez.mentormind.bd" },
