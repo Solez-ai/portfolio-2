@@ -1,0 +1,34 @@
+# Samin Yeasar (SOLEZ / Solez-ai / SOLEZ-AI / solez.ai) — Full Stack Developer & Solo Founder
+
+## About
+Full Stack Developer and solo founder known as SOLEZ (Solez-ai, SOLEZ-AI, solez.ai) building MentorMind — introducing a new culture of help to Bangladesh. Specializing in React, TypeScript, Rust, Node.js, and modern web development.
+
+## Online Presence
+- Portfolio: https://solez.vercel.app/
+- Also at: https://solez.mentormind.bd
+- GitHub: https://github.com/Solez-ai
+- X (Twitter): https://x.com/Solez_None
+- LinkedIn: https://www.linkedin.com/in/solez-ai/
+- Instagram: https://www.instagram.com/solez.ai
+
+## Aliases
+- SOLEZ (primary brand)
+- Solez-ai (GitHub/technical alias)
+- SOLEZ-AI (stylized technical alias)
+- solez.ai (Instagram/social handle)
+
+## Technical Skills
+Frontend: React, Next.js, TypeScript, JavaScript, HTML, CSS, Tailwind CSS
+Backend: Node.js, Python, Rust, Supabase, Firebase, PostgreSQL
+Tools: Docker, AWS, GCP, Vercel, Git
+
+## Notable Projects
+- 3 Drag Win: Windows utility for three-finger touchpad window dragging (Rust, C++, WinAPI)
+- Nodex: Browser-native data visualization platform (React, TypeScript, Supabase)
+- Vell: Reactive document markup language (Rust, WebAssembly, TypeScript)
+- URLPad: Browser-based text editor using URL hash (Vanilla JS)
+- PySketch: Visual programming platform for Python Turtle graphics (Next.js, React)
+
+## Work Experience
+- MentorMind: Co-Founder & CTO (Feb 2026 - Present)
+- Solven.ai: Junior Web Developer (2025, 6 months)

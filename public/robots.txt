@@ -1,0 +1,8 @@
+# robots.txt for Samin Yeasar's portfolio
+# Allow all crawlers full access to the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://solez.vercel.app/sitemap.xml
