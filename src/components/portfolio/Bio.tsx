@@ -16,7 +16,7 @@ export function Bio() {
         Yup! I&apos;m a <Chip>Full Stack Developer</Chip> and solo founder known as <Chip icon={<SiTypescript className="w-4 h-4 text-[#3178c6]" />}>SOLEZ</Chip> (<Chip>SOLEZ-AI</Chip> / <Chip>solez.ai</Chip>) who is currently building{" "}
         <Chip>MentorMind</Chip> — introducing a new culture of help to Bangladesh. I use{" "}
         <Chip icon={<SiReact className="w-4 h-4 text-[#61dafb]" />}>React</Chip>,{" "}
-        <Chip icon={<SiTailwindcss className="w-4 h-4 text-[#38bdf8] />}>Tailwind</Chip> to build frontends,{" "}
+        <Chip icon={<SiTailwindcss className="w-4 h-4 text-[#38bdf8]" />}>Tailwind</Chip> to build frontends,{" "}
         <Chip icon={<Database className="w-4 h-4 text-[#e5e5e5]" />}>SQL</Chip> &{" "}
         <Chip icon={<SiSupabase className="w-4 h-4 text-[#3ecf8e]" />}>Supabase</Chip> for backends,{" "}
         <Chip icon={<SiNextdotjs className="w-4 h-4" />}>Next.js</Chip> to create complete full-stack web apps,

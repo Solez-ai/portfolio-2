@@ -77,6 +77,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&family=VT323&display=swap" },
       { rel: "canonical", href: "https://solez.vercel.app" },
+      { rel: "alternate", href: "https://solez.mentormind.bd" },
     ],
   }),
   shellComponent: RootShell,
@@ -97,10 +98,10 @@ function RootShell({ children }: { children: ReactNode }) {
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Samin Yeasar",
-              alternateName: "Solez-ai",
+              alternateName: "Solez-ai (SOLEZ / SOLEZ-AI / solez.ai)",
               url: "https://solez.vercel.app",
               jobTitle: "Full Stack Developer & Solo Founder",
-              description: "Full Stack Developer and solo founder building MentorMind — introducing a new culture of help to Bangladesh.",
+              description: "Full Stack Developer and solo founder (SOLEZ) building MentorMind — introducing a new culture of help to Bangladesh.",
               knowsAbout: [
                 "React",
                 "TypeScript",
@@ -112,6 +113,8 @@ function RootShell({ children }: { children: ReactNode }) {
                 "Node.js"
               ],
               sameAs: [
+                "https://solez.mentormind.bd",
+                "https://solez.vercel.app",
                 "https://github.com/Solez-ai",
                 "https://x.com/Solez_None",
                 "https://www.linkedin.com/in/solez-ai/",
