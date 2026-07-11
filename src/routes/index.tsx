@@ -17,14 +17,29 @@ import SideRays from "@/components/splash/SideRays";
 
 export const Route = createFileRoute("/")({ component: Index });
 
+const SECTIONS = [
+  Header,
+  Bio,
+  SocialCards,
+  QuickLinks,
+  Skills,
+  WorkExperience,
+  Contributions,
+  Projects,
+  Uses,
+  LetsConnect,
+  Footer,
+];
+
 function Index() {
   const [unlocked, setUnlocked] = useState(false);
+  const staggerBase = unlocked ? 0 : 9999; // 9999 = effectively infinite delay
 
   return (
     <main className="min-h-screen bg-background text-foreground relative">
       <LockScreen onUnlock={() => { setUnlocked(true); window.scrollTo(0, 0); }} />
 
-      {/* ── SideRays — infinite corner rays (full viewport, no edges) ─── */}
+      {/* SideRays */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden"
         style={{ opacity: unlocked ? 1 : 0, transition: "opacity 1.2s ease-out" }}
       >
@@ -44,22 +59,16 @@ function Index() {
       </div>
 
       <Cursor />
-      <div
-        className={`relative z-10 max-w-3xl mx-auto px-4 sm:px-6 py-10 space-y-8 transition-all duration-[800ms] ease-out ${
-          unlocked ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-        }`}
-      >
-        <Header />
-        <Bio />
-        <SocialCards />
-        <QuickLinks />
-        <Skills />
-        <WorkExperience />
-        <Contributions />
-        <Projects />
-        <Uses />
-        <LetsConnect />
-        <Footer />
+      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 py-10 space-y-8">
+        {SECTIONS.map((Comp, i) => (
+          <div
+            key={i}
+            className={unlocked ? "stagger-item" : "opacity-0 translate-y-4"}
+            style={{ "--stagger-delay": `${i * 60}ms` } as React.CSSProperties}
+          >
+            <Comp />
+          </div>
+        ))}
       </div>
     </main>
   );
