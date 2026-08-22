@@ -1,0 +1,67 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/2025-03-26",
+  "name": "Solez Portfolio MCP",
+  "description": "MCP server for Samin Yeasar (SOLEZ) portfolio — provides tools to look up projects, skills, contact info, and work history.",
+  "version": "1.0.0",
+  "url": "https://solez.vercel.app",
+  "capabilities": {
+    "tools": true,
+    "resources": true
+  },
+  "tools": [
+    {
+      "name": "get_portfolio_summary",
+      "description": "Returns a summary of Samin Yeasar's portfolio including bio, skills, projects, and contact information.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "get_projects",
+      "description": "Lists all notable projects by Samin Yeasar with descriptions, technologies, and links.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "get_skills",
+      "description": "Returns the full list of technical skills and tools used by Samin Yeasar.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "get_contact_info",
+      "description": "Returns contact information for Samin Yeasar including email, social media profiles, and resume link.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "get_work_history",
+      "description": "Returns work experience history for Samin Yeasar.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  ],
+  "resources": [
+    {
+      "uri": "https://solez.vercel.app/llms.txt",
+      "name": "Site Summary",
+      "description": "Machine-readable summary of the portfolio site",
+      "mimeType": "text/plain"
+    },
+    {
+      "uri": "https://solez.vercel.app/about",
+      "name": "About Page",
+      "description": "About Samin Yeasar — biography, skills, projects, and background",
+      "mimeType": "text/html"
+    }
+  ]
+}
