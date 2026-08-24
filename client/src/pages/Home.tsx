@@ -20,20 +20,20 @@ import {
 import { useTheme } from "../contexts/ThemeContext";
 
 const assets = {
-  avatar: "/manus-storage/avatar-BGvGc5p-_d7aa1e6f.jpg",
-  mentorMind: "/manus-storage/mentormind-Cyu8EyIx_d3d4d546.png",
-  dragWin: "/manus-storage/proj-3dragwin-Ddo0AT6L_126a3e7f.png",
-  nodex: "/manus-storage/proj-nodex-EEd-03-i_34687fb6.png",
-  pySketch: "/manus-storage/proj-pysketch-iSOhaQGs_2bebd439.png",
-  urlPad: "/manus-storage/proj-urlpad-Bb5P0A9a_bbe3b03b.png",
-  vell: "/manus-storage/proj-vell-BpHkJlB6_f52ff9a1.png",
-  solven: "/manus-storage/solvenai-2Dmhfokv_45304f09.png",
-  falschen: "/manus-storage/falschen-anvil_0bdd9a9b.svg",
-  heroArt: "/manus-storage/solez-hero-constellation_a440490c.jpg",
-  architectureArt: "/manus-storage/solez-architectural-grid_cd3e0f12.jpg",
-  systemsArt: "/manus-storage/solez-systems-poster_5eca1c3c.jpg",
-  workshopArt: "/manus-storage/solez-workshop-texture_4ff0a0e7.jpg",
-  mark: "/manus-storage/solez-geometric-mark_b02a782c.png",
+  avatar: "/avatar-BGvGc5p-.jpg",
+  mentorMind: "/mentormind-Cyu8EyIx.png",
+  dragWin: "/proj-3dragwin-Ddo0AT6L.png",
+  nodex: "/proj-nodex-EEd-03-i.png",
+  pySketch: "/proj-pysketch-iSOhaQGs.png",
+  urlPad: "/proj-urlpad-Bb5P0A9a.png",
+  vell: "/proj-vell-BpHkJlB6.png",
+  solven: "/solvenai-2Dmhfokv.png",
+  falschen: "/falschen-anvil.svg",
+  heroArt: "/solez-hero-constellation.jpg",
+  architectureArt: "/solez-architectural-grid.jpg",
+  systemsArt: "/solez-systems-poster.jpg",
+  workshopArt: "/solez-workshop-texture.jpg",
+  mark: "/solez-geometric-mark.png",
 };
 
 const projects = [
