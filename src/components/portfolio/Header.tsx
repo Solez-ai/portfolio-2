@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { MapPin, Clock, QrCode, ExternalLink, BadgeCheck } from "lucide-react";
+import TechText from "@/components/reactbits/TechText";
 import avatarImg from "@/assets/avatar.jpg";
 import qrImg from "@/assets/qr.png";
 
@@ -44,9 +45,34 @@ export function Header() {
       </button>
 
       <div className="flex-1 min-w-0 pt-1">
-        <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-2 animate-glitch">
-          Samin Yeasar — Full Stack Developer &amp; Founder <BadgeCheck className="w-6 h-6 text-accent-blue animate-float" aria-label="Verified profile" />
+        <h1 className="w-full">
+          <span className="sr-only">Samin Yeasar — Full Stack Developer &amp; Founder</span>
+          <TechText
+            text="Samin Yeasar"
+            fontWeight={700}
+            fontSize={72}
+            letterSpacing={-0.04}
+            color="#ffffff"
+            accentColor="#7dd3fc"
+            reveal="letter"
+            reach={190}
+            softness={0.7}
+            dashLength={4}
+            dashGap={2}
+            strokeWidth={1.4}
+            specks={12}
+            selection
+            labels
+            draggable
+            sweep
+            speed={0.8}
+            className="h-[4.5rem] md:h-[5.5rem]"
+          />
         </h1>
+        <p className="text-muted-foreground font-mono text-sm mt-1 flex items-center gap-1.5">
+          Full Stack Developer &amp; Founder
+          <BadgeCheck className="w-4 h-4 text-accent-blue animate-float" aria-label="Verified profile" />
+        </p>
         <p className="text-muted-foreground font-mono text-sm mt-1">
           @solez-ai<span className="animate-blink">_</span>
         </p>

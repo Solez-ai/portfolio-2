@@ -12,7 +12,7 @@ import { Uses } from "@/components/portfolio/Uses";
 import { LetsConnect } from "@/components/portfolio/LetsConnect";
 import { Footer } from "@/components/portfolio/Footer";
 import { Cursor } from "@/components/portfolio/Cursor";
-import { LockScreen } from "@/components/splash/LockScreen";
+import { PixelIntro } from "@/components/splash/PixelIntro";
 import SideRays from "@/components/splash/SideRays";
 
 export const Route = createFileRoute("/")({ component: Index });
@@ -32,16 +32,15 @@ const SECTIONS = [
 ];
 
 function Index() {
-  const [unlocked, setUnlocked] = useState(false);
-  const staggerBase = unlocked ? 0 : 9999; // 9999 = effectively infinite delay
+  const [revealed, setRevealed] = useState(false);
 
   return (
     <main className="min-h-screen bg-background text-foreground relative">
-      <LockScreen onUnlock={() => { setUnlocked(true); window.scrollTo(0, 0); }} />
+      <PixelIntro onRevealDone={() => { setRevealed(true); window.scrollTo(0, 0); }} />
 
       {/* SideRays */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden"
-        style={{ opacity: unlocked ? 1 : 0, transition: "opacity 1.2s ease-out" }}
+        style={{ opacity: revealed ? 1 : 0, transition: "opacity 1.2s ease-out" }}
       >
         <SideRays
           speed={3}
@@ -63,7 +62,7 @@ function Index() {
         {SECTIONS.map((Comp, i) => (
           <div
             key={i}
-            className={unlocked ? "stagger-item" : "opacity-0 translate-y-4"}
+            className={revealed ? "stagger-item" : "opacity-0 translate-y-4"}
             style={{ "--stagger-delay": `${i * 60}ms` } as React.CSSProperties}
           >
             <Comp />

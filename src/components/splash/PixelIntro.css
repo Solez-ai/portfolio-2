@@ -1,0 +1,67 @@
+@property --veil-hole {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+/* DitherVeil intro: the veil keeps pixelating on its own, then dissolves
+   away in a blocky grid so the portfolio is revealed underneath. */
+.pixel-intro {
+  animation: pixel-intro-dissolve 900ms cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes pixel-intro-dissolve {
+  0% {
+    --veil-hole: 0%;
+    opacity: 1;
+  }
+  85% {
+    --veil-hole: 88%;
+    opacity: 1;
+  }
+  100% {
+    --veil-hole: 100%;
+    opacity: 0;
+  }
+}
+
+.pixel-intro__veil {
+  -webkit-mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0) 0 var(--veil-hole),
+    rgba(0, 0, 0, 1) calc(var(--veil-hole) + 3px)
+  );
+  mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0) 0 var(--veil-hole),
+    rgba(0, 0, 0, 1) calc(var(--veil-hole) + 3px)
+  );
+  -webkit-mask-size: 26px 26px;
+  mask-size: 26px 26px;
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+}
+
+.pixel-intro__label {
+  animation: pixel-intro-label 700ms ease-out forwards;
+}
+
+@keyframes pixel-intro-label {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pixel-intro {
+    animation-duration: 260ms;
+  }
+  .pixel-intro__label {
+    animation: none;
+  }
+}
