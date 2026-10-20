@@ -1,0 +1,213 @@
+/**
+ * Design System Tokens — High-Craft Swiss Industrial & Editorial Architecture
+ * Samin Yeasar (SOLEZ) Portfolio
+ *
+ * Aesthetic Direction: Warm Obsidian + Alabaster Paper + International Signal Vermilion
+ * Typography: Clash Display (Architectural Display) + Zodiak Italic (Editorial Contrast) +
+ *             Geist (Body) + JetBrains Mono (Tabular Telemetry)
+ * Motion Engineering: Emil Kowalski custom cubic-bezier curves & physical spring dynamics
+ */
+
+/* ========================================
+ * SELF-HOSTED FONTS (WOFF2)
+ * ======================================== */
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/clash-display-500-normal.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/clash-display-600-normal.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/clash-display-700-normal.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zodiak';
+  src: url('/fonts/zodiak-400-normal.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zodiak';
+  src: url('/fonts/zodiak-400-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/jetbrains-mono-400_700-normal.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/geist-400_700-normal.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  /* ========================================
+   * COLOR PALETTE — WARM CARBON & SIGNAL VERMILION
+   * ======================================== */
+
+  --ground: #0B0B0C;
+  --surface: #121214;
+  --surface-elevated: #17171A;
+  --ink: #F3F1EC;
+  --muted: #8E8B84;
+  --line: #222226;
+  --line-bright: #34343A;
+  --accent: #FF3B1D;
+  --accent-soft: rgba(255, 59, 29, 0.14);
+  --node-bg: #121214;
+  --edge: rgba(243, 241, 236, 0.16);
+
+  /* Aliases for compatibility */
+  --color-ground: var(--ground);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-node: var(--node-bg);
+  --color-edge: var(--edge);
+
+  /* ========================================
+   * TYPOGRAPHY
+   * ======================================== */
+
+  --f-display: 'Clash Display', 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --f-serif: 'Zodiak', Georgia, serif;
+  --f-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --t-mega: clamp(3.75rem, 2rem + 8vw, 10.5rem);
+  --t-xl: clamp(2.25rem, 1.5rem + 3vw, 4.5rem);
+  --t-l: clamp(1.5rem, 1.25rem + 1.2vw, 2.5rem);
+  --t-m: clamp(1.125rem, 1.05rem + 0.375vw, 1.375rem);
+  --t-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --t-s: 0.875rem;
+  --t-xs: 0.75rem;
+
+  /* ========================================
+   * SPACING SCALE & GRID
+   * ======================================== */
+
+  --gutter: clamp(1.25rem, 3vw, 3rem);
+  --grid-columns: 12;
+  --grid-gutter: clamp(1rem, 2vw, 2rem);
+  --grid-margin: var(--gutter);
+
+  /* Vertical rhythm for section spacing */
+  --space-tight: clamp(2rem, 4vw, 4rem);
+  --space-normal: clamp(4rem, 8vw, 8rem);
+  --space-airy: clamp(6rem, 12vw, 12rem);
+
+  /* Node spacing & sizes */
+  --node-experience: 120px;
+  --node-project: 80px;
+  --node-skill: 40px;
+  --node-contact: 60px;
+
+  --node-spacing-min: 80px;
+  --node-spacing-min-mobile: 60px;
+  --node-edge-min: 20px;
+  --node-grid-snap: 40px;
+  --node-hover-buffer: 24px;
+
+  /* ========================================
+   * EMIL KOWALSKI MOTION & EASING SYSTEM
+   * ======================================== */
+
+  --dur-instant: 0ms;
+  --dur-feedback: 160ms;
+  --dur-quick: 260ms;
+  --dur-settle: 1100ms;
+  --dur-transition: 650ms;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-power3: cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* ========================================
+   * SHAPE & Z-INDEX CONSTANTS
+   * ======================================== */
+
+  --radius: 6px;
+
+  --z-base: 0;
+  --z-edges: 1;
+  --z-nodes: 10;
+  --z-preview: 50;
+  --z-dragging: 100;
+  --z-header: 200;
+  --z-transition: 1000;
+}
+
+/* ========================================
+ * TABLET BREAKPOINT (768px - 1023px)
+ * ======================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --grid-columns: 8;
+    --grid-gutter: 1.5rem;
+    --grid-margin: var(--grid-gutter);
+  }
+}
+
+/* ========================================
+ * MOBILE BREAKPOINT (<768px)
+ * ======================================== */
+@media (max-width: 767px) {
+  :root {
+    --grid-columns: 4;
+    --grid-gutter: 1rem;
+    --grid-margin: 1.25rem;
+    --node-spacing-min: var(--node-spacing-min-mobile);
+    --node-experience: 80px;
+    --node-project: 60px;
+    --node-skill: 32px;
+    --node-contact: 60px;
+  }
+}
+
+/* ========================================
+ * REDUCED MOTION
+ * Respects user preference for reduced motion
+ * ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-instant: 0ms;
+    --dur-feedback: 0ms;
+    --dur-quick: 200ms;
+    --dur-settle: 0ms;
+    --dur-transition: 300ms;
+  }
+}
