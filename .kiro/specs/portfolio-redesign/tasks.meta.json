@@ -1,0 +1,331 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1. Scaffold Next.js project and install dependencies": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483073565
+      },
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483091924
+      },
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792484265651
+      }
+    ],
+    "2.1 Configure GSAP and Lenis": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483073784
+      },
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792484271377
+      }
+    ],
+    "2.2 Setup typography system": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483074017
+      },
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792484272292
+      }
+    ],
+    "3.1 Define design system tokens": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483074303
+      },
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792484272870
+      }
+    ],
+    "3.2 Create content data file": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483074478
+      }
+    ],
+    "4.1 Create spring simulation core": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483074650
+      }
+    ],
+    "4.2 Create physics engine manager": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483074815
+      }
+    ],
+    "5. Create graph state management": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483075042
+      }
+    ],
+    "6. Build Node component": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483075218
+      }
+    ],
+    "7. Build Edge component": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483075395
+      }
+    ],
+    "8.1 Create canvas container and rendering": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483075761
+      }
+    ],
+    "8.2 Integrate physics simulation": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483075987
+      }
+    ],
+    "9.1 Setup drag gesture handling": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483076151
+      }
+    ],
+    "9.2 Add drag momentum and physics response": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483076323
+      }
+    ],
+    "10.1 Create PreviewCard component": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483076565
+      }
+    ],
+    "10.2 Wire hover state and edge highlighting": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483076729
+      }
+    ],
+    "10.3 Implement skill edge hover": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483076924
+      }
+    ],
+    "11.1 Setup keyboard focus system": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483077101
+      }
+    ],
+    "11.2 Add keyboard controls": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483077478
+      }
+    ],
+    "11.3 Add ARIA labels and screen reader support": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483077639
+      }
+    ],
+    "11.4 Implement reduced motion support": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483077843
+      }
+    ],
+    "12.1 Create case study page layout": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483078015
+      }
+    ],
+    "12.2 Implement shared-element transition": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483078213
+      }
+    ],
+    "13. Implement URL state persistence": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483078428
+      }
+    ],
+    "14. Build footer section with contact nodes": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483078625
+      }
+    ],
+    "15. Build 404 page": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483078796
+      }
+    ],
+    "16. Add idle drift animation": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483078993
+      }
+    ],
+    "17.1 Add mobile touch interactions": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483079296
+      }
+    ],
+    "17.2 Add responsive layout adjustments": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483079445
+      }
+    ],
+    "18. Implement initial load animation": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483079595
+      }
+    ],
+    "19. Setup error states and fallback views": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483079753
+      }
+    ],
+    "20. Checkpoint - Core graph functionality complete": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483079894
+      }
+    ],
+    "21.1 Build production bundle and run local preview": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483080058
+      }
+    ],
+    "21.2 Run shoot.mjs for visual and performance testing": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483080269
+      }
+    ],
+    "21.3 Run audit.mjs for SEO and accessibility": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483080443
+      }
+    ],
+    "22. Fix QA issues from first pass": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483080571
+      }
+    ],
+    "23. Run second QA pass": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483080706
+      }
+    ],
+    "24. Checkpoint - QA complete": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483080851
+      }
+    ],
+    "25.1 Create OG image and favicon": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483080997
+      }
+    ],
+    "25.2 Create robots.txt and sitemap.xml": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483081152
+      }
+    ],
+    "25.3 Add analytics and performance monitoring": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483081438
+      }
+    ],
+    "26. Final production verification": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483081671
+      }
+    ],
+    "27. Deploy to production": [
+      {
+        "executionId": "fca77e95-995d-47a6-be0d-2c5bde1dde56",
+        "chatSessionId": "sess_24efe235-ea0b-4a04-b5e6-436179e01de8",
+        "timestamp": 1792483081835
+      }
+    ]
+  }
+}

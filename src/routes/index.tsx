@@ -1,75 +1,108 @@
-import { useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
-import { Header } from "@/components/portfolio/Header";
-import { Bio } from "@/components/portfolio/Bio";
-import { SocialCards } from "@/components/portfolio/SocialCards";
-import { QuickLinks } from "@/components/portfolio/QuickLinks";
-import { Skills } from "@/components/portfolio/Skills";
-import { WorkExperience } from "@/components/portfolio/WorkExperience";
-import { Contributions } from "@/components/portfolio/Contributions";
-import { Projects } from "@/components/portfolio/Projects";
-import { Uses } from "@/components/portfolio/Uses";
-import { LetsConnect } from "@/components/portfolio/LetsConnect";
-import { Footer } from "@/components/portfolio/Footer";
-import { Cursor } from "@/components/portfolio/Cursor";
-import { LockScreen } from "@/components/splash/LockScreen";
-import SideRays from "@/components/splash/SideRays";
+import React, { Component, type ReactNode, useState } from 'react';
+import { createFileRoute } from '@tanstack/react-router';
+import { CornerFrame } from '@/components/CornerFrame';
+import { GraphCanvas } from '@/components/graph/GraphCanvas';
+import { FallbackListView } from '@/components/graph/FallbackListView';
+import { AboutSection } from '@/components/AboutSection';
+import { Footer } from '@/components/Footer';
+import { SITE_META } from '@/data/portfolio-content';
 
-export const Route = createFileRoute("/")({ component: Index });
+export const Route = createFileRoute('/')({
+  component: HomeView,
+});
 
-const SECTIONS = [
-  Header,
-  Bio,
-  SocialCards,
-  QuickLinks,
-  Skills,
-  WorkExperience,
-  Contributions,
-  Projects,
-  Uses,
-  LetsConnect,
-  Footer,
-];
+interface GraphErrorBoundaryState {
+  hasError: boolean;
+  errorMessage: string | null;
+}
 
-function Index() {
-  const [unlocked, setUnlocked] = useState(false);
-  const staggerBase = unlocked ? 0 : 9999; // 9999 = effectively infinite delay
+class GraphErrorBoundary extends Component<
+  { children: ReactNode; onRetry: () => void },
+  GraphErrorBoundaryState
+> {
+  constructor(props: { children: ReactNode; onRetry: () => void }) {
+    super(props);
+    this.state = { hasError: false, errorMessage: null };
+  }
+
+  static getDerivedStateFromError(error: Error): GraphErrorBoundaryState {
+    return {
+      hasError: true,
+      errorMessage: error.message || 'Graph visualization failed to initialize.',
+    };
+  }
+
+  componentDidCatch(error: Error) {
+    console.error('[NodeGraphPortfolio] Graph render error:', error);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <FallbackListView
+          errorMessage={this.state.errorMessage}
+          onSwitchToGraph={() => {
+            this.setState({ hasError: false, errorMessage: null });
+            this.props.onRetry();
+          }}
+        />
+      );
+    }
+    return this.props.children;
+  }
+}
+
+function HomeView() {
+  const [viewMode, setViewMode] = useState<'graph' | 'list'>('graph');
+  const [graphKey, setGraphKey] = useState(0);
 
   return (
-    <main className="min-h-screen bg-background text-foreground relative">
-      <LockScreen onUnlock={() => { setUnlocked(true); window.scrollTo(0, 0); }} />
+    <div className="min-h-screen bg-[#0B0B0C] text-[#F3F1EC]">
+      <CornerFrame
+        viewMode={viewMode}
+        onToggleViewMode={() =>
+          setViewMode((m) => (m === 'graph' ? 'list' : 'graph'))
+        }
+      />
 
-      {/* SideRays */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden"
-        style={{ opacity: unlocked ? 1 : 0, transition: "opacity 1.2s ease-out" }}
-      >
-        <SideRays
-          speed={3}
-          rayColor1="#FBBF24"
-          rayColor2="#60A5FA"
-          intensity={2.5}
-          spread={3.5}
-          origin="top-right"
-          tilt={-3}
-          saturation={1.5}
-          blend={0.55}
-          falloff={0.8}
-          opacity={0.5}
-        />
-      </div>
-
-      <Cursor />
-      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 py-10 space-y-8">
-        {SECTIONS.map((Comp, i) => (
-          <div
-            key={i}
-            className={unlocked ? "stagger-item" : "opacity-0 translate-y-4"}
-            style={{ "--stagger-delay": `${i * 60}ms` } as React.CSSProperties}
-          >
-            <Comp />
+      <main id="main-content">
+        <section
+          id="work-graph"
+          aria-label="Interactive Node Graph Portfolio"
+          className="relative"
+        >
+          {/* Unboxed Architectural Hero Statement (Top-Left Anchor) */}
+          <div className="pointer-events-none absolute top-16 md:top-20 left-5 md:left-10 z-20 max-w-sm">
+            <h1
+              style={{ fontFamily: 'var(--f-display)' }}
+              className="text-xl md:text-2xl font-semibold tracking-[-0.03em] text-[#F3F1EC] leading-[1.1]"
+            >
+              {SITE_META.role.split('&')[0].trim()}{' '}
+              <span className="serif-italic font-normal text-[#8E8B84]">
+                &amp; Systems Architect.
+              </span>
+            </h1>
+            <p className="hidden sm:block mt-2 font-sans text-xs md:text-[13px] text-[#8E8B84] leading-relaxed">
+              {SITE_META.heroSummary}
+            </p>
           </div>
-        ))}
-      </div>
-    </main>
+
+          {viewMode === 'graph' ? (
+            <GraphErrorBoundary onRetry={() => setGraphKey((k) => k + 1)}>
+              <GraphCanvas
+                key={graphKey}
+                onFallbackRequested={() => setViewMode('list')}
+              />
+            </GraphErrorBoundary>
+          ) : (
+            <FallbackListView onSwitchToGraph={() => setViewMode('graph')} />
+          )}
+        </section>
+
+        <AboutSection />
+      </main>
+
+      <Footer />
+    </div>
   );
 }

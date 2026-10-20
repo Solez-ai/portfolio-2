@@ -1,0 +1,223 @@
+{
+  "url": "http://127.0.0.1:4400/",
+  "errors": [],
+  "failed": [],
+  "desktop": {
+    "loadMs": 704,
+    "loaderMs": null,
+    "settledMs": null,
+    "vitals": {
+      "lcpMs": 440,
+      "lcpElement": "p",
+      "cls": 0.001
+    },
+    "height": 3604,
+    "overflowX": false,
+    "offenders": [],
+    "h1": [
+      "SOLEZ — Full Stack Developer & Co-Founder"
+    ],
+    "smallTargets": [
+      "Skip to main content 1x1",
+      "GitHub 43x16",
+      "Twitter 50x16",
+      "LinkedIn 58x16",
+      "Instagram 65x16",
+      "Skill connection: Supaba 81x22",
+      "Skill connection: Next.j 73x22",
+      "Skill connection: TypeSc 96x22"
+    ],
+    "glHidden": [],
+    "title": "Samin Yeasar (SOLEZ) — Full Stack Developer & Co-Founder | Interactive Node Graph Portfolio",
+    "glOn": false,
+    "scrollFps": {
+      "fps": 50,
+      "worstFrameMs": 132
+    },
+    "nav": {
+      "href": "/project/nodex",
+      "scrollYAfter": 0,
+      "title": "Nodex — Case Study | Samin Yeasar (SOLEZ)"
+    },
+    "idleMotion": true,
+    "idleAt": "top"
+  },
+  "mobile": {
+    "throttled": true,
+    "loadMs": 3892,
+    "loaderMs": null,
+    "settledMs": null,
+    "vitals": {
+      "lcpMs": 748,
+      "lcpElement": "p",
+      "cls": 0
+    },
+    "height": 4477,
+    "overflowX": false,
+    "offenders": [],
+    "h1": [
+      "SOLEZ — Full Stack Developer & Co-Founder"
+    ],
+    "smallTargets": [
+      "Skip to main content 1x1",
+      "Skill connection: Supaba 69x19",
+      "Skill connection: Next.j 62x19",
+      "Skill connection: TypeSc 82x19",
+      "Skill connection: Node.j 62x19",
+      "Skill connection: React  49x19",
+      "Skill connection: Rust b 43x19",
+      "Skill connection: React  49x19"
+    ],
+    "glHidden": [],
+    "title": "Samin Yeasar (SOLEZ) — Full Stack Developer & Co-Founder | Interactive Node Graph Portfolio",
+    "glOn": false,
+    "scrollFps": {
+      "fps": 43,
+      "worstFrameMs": 100
+    }
+  },
+  "files": [
+    "C:\\Projects\\portfolio-2\\.shots\\home\\d-00-firstpaint.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\d-01-hero.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\d-02-scroll.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\d-03-scroll.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\d-04-scroll.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\d-90-transition-a.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\d-90-transition-b.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\d-90-transition-c.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\d-91-after-nav.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\d-92-back.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\k-01-focus.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\k-02-focus.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\k-03-focus.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\k-04-focus.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\h-01-rest.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\h-01-hover.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\h-02-rest.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\h-02-hover.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\h-03-rest.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\h-03-hover.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\h-04-rest.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\h-04-hover.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\h-05-rest.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\h-05-hover.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\m-01-hero.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\m-02-scroll.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\m-03-scroll.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\m-04-scroll.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\r-01-hero.png",
+    "C:\\Projects\\portfolio-2\\.shots\\home\\r-02-mid.png"
+  ],
+  "notes": [
+    "desktop FPS runs headless on a software GPU: treat it as a floor, not a measurement of real hardware",
+    "mobile runs at 4x CPU slowdown on slow 4G: mobile.vitals and mobile.scrollFps are the numbers that count",
+    "loadMs: ms from navigation to the load event, null if it had not fired after 30 s (desktop) or 60 s (phone); a heavy page takes long, while visitors see content at vitals.lcpMs. loaderMs: ms until the #loader ended, null when the page has none",
+    "settledMs: ms from navigation by which the first screen stopped changing, never before the fixed wait. null: still changing at the cap, either a long intro or continuous motion (a live shader, video); d-01-hero / m-01-hero tell which. reduced.moving: the screen was still changing 1.5 s after load with reduced motion on"
+  ],
+  "keyboard": {
+    "stops": [
+      "a \"Skip to main content\"",
+      "a \"SOLEZ / Samin Yeasar\"",
+      "a \"Work\"",
+      "a \"About\"",
+      "a \"Contact\"",
+      "button \"Index\"",
+      "a \"GitHub\"",
+      "a \"Twitter\""
+    ],
+    "skipLinkFirst": true,
+    "noVisibleFocus": [],
+    "invisibleFocus": [],
+    "stuck": false
+  },
+  "hover": {
+    "targets": [
+      {
+        "shot": "h-01",
+        "label": "button \"Index\"",
+        "interactive": true,
+        "primary": true,
+        "react": "pixels",
+        "changed": []
+      },
+      {
+        "shot": "h-02",
+        "label": "g \"Supabase\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "transform"
+        ]
+      },
+      {
+        "shot": "h-03",
+        "label": "div \"HUB · CTO MentorMind Co-Founder & CTO Fe\"",
+        "interactive": true,
+        "primary": true,
+        "react": "color",
+        "changed": [
+          "borderColor"
+        ]
+      },
+      {
+        "shot": "h-04",
+        "label": "div \"PROJECT Nodex Data Graph\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "borderColor",
+          "boxShadow"
+        ]
+      },
+      {
+        "shot": "h-05",
+        "label": "div \"EXPERIENCE Solven.ai Jr. Web Dev · 2025 \"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "boxShadow"
+        ]
+      }
+    ],
+    "noHoverChange": [],
+    "colorOnly": [
+      "h-03 div \"HUB · CTO MentorMind Co-Founder & CTO Fe\""
+    ],
+    "covered": [],
+    "cursorFollower": false
+  },
+  "reduced": {
+    "hiddenText": 0,
+    "moving": false
+  },
+  "a11y": {
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "count": 10,
+        "nodes": [
+          ".min-w-\\[128px\\]",
+          "div[data-node-id=\"proj-nodex\"]",
+          "div[data-node-id=\"proj-3dragwin\"]",
+          "div[data-node-id=\"proj-urlpad\"]"
+        ]
+      },
+      {
+        "id": "nested-interactive",
+        "impact": "serious",
+        "help": "Interactive controls must not be nested",
+        "count": 1,
+        "nodes": [
+          "svg[role=\"img\"]"
+        ]
+      }
+    ],
+    "serious": 2,
+    "contrastNeedsReview": 54
+  }
+}
