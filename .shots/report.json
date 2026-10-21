@@ -1,15 +1,15 @@
 {
-  "url": "http://127.0.0.1:4198",
+  "url": "http://127.0.0.1:4199",
   "errors": [],
   "failed": [],
   "desktop": {
-    "loadMs": 1068,
+    "loadMs": 671,
     "loaderMs": null,
-    "settledMs": null,
+    "settledMs": 9691,
     "vitals": {
-      "lcpMs": 2176,
-      "lcpElement": "span.text-[24vw]",
-      "cls": 0.004
+      "lcpMs": 3112,
+      "lcpElement": "span.text-[26vw]",
+      "cls": 0.021
     },
     "height": 4218,
     "overflowX": false,
@@ -22,21 +22,21 @@
     "title": "Samin Yeasar (SOLEZ) — Full Stack Developer & Co-Founder | Interactive Node Graph Portfolio",
     "glOn": false,
     "scrollFps": {
-      "fps": 39,
-      "worstFrameMs": 200
+      "fps": 49,
+      "worstFrameMs": 83
     },
     "idleMotion": true,
     "idleAt": "top"
   },
   "mobile": {
     "throttled": true,
-    "loadMs": 4112,
+    "loadMs": 6610,
     "loaderMs": null,
     "settledMs": null,
     "vitals": {
-      "lcpMs": 700,
-      "lcpElement": "p",
-      "cls": 0.001
+      "lcpMs": 10624,
+      "lcpElement": "span.text-[26vw]",
+      "cls": 0.097
     },
     "height": 5263,
     "overflowX": false,
@@ -49,8 +49,8 @@
     "title": "Samin Yeasar (SOLEZ) — Full Stack Developer & Co-Founder | Interactive Node Graph Portfolio",
     "glOn": false,
     "scrollFps": {
-      "fps": 32,
-      "worstFrameMs": 183
+      "fps": 26,
+      "worstFrameMs": 100
     }
   },
   "files": [
@@ -148,6 +148,7 @@
         "react": "moves",
         "changed": [
           "backgroundColor",
+          "borderColor",
           "boxShadow",
           "color",
           "textDecorationColor",
@@ -162,7 +163,6 @@
         "react": "moves",
         "changed": [
           "backgroundColor",
-          "borderColor",
           "boxShadow"
         ]
       },
@@ -179,7 +179,7 @@
         "label": "button \"Zoom out graph\"",
         "interactive": true,
         "primary": true,
-        "react": "pixels",
+        "react": "masked",
         "changed": []
       },
       {
@@ -197,9 +197,6 @@
         "primary": true,
         "react": "moves",
         "changed": [
-          "backgroundColor",
-          "borderColor",
-          "transform",
           "boxShadow"
         ]
       }
@@ -216,6 +213,6 @@
   "a11y": {
     "violations": [],
     "serious": 0,
-    "contrastNeedsReview": 58
+    "contrastNeedsReview": 84
   }
 }
