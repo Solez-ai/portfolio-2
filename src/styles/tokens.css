@@ -1,11 +1,10 @@
 /**
- * Design System Tokens — High-Craft Swiss Industrial & Editorial Architecture
+ * Design System Tokens - Spatial Workbench & Editorial Architecture
  * Samin Yeasar (SOLEZ) Portfolio
  *
- * Aesthetic Direction: Warm Obsidian + Alabaster Paper + International Signal Vermilion
- * Typography: Clash Display (Architectural Display) + Zodiak Italic (Editorial Contrast) +
- *             Geist (Body) + JetBrains Mono (Tabular Telemetry)
- * Motion Engineering: Emil Kowalski custom cubic-bezier curves & physical spring dynamics
+ * Palette: Obsidian Slate + Archival Mineral Paper + Blueprint Cobalt
+ * Typography: Clash Display (Macro Display) + Geist (UI & Body) + JetBrains Mono (Telemetry)
+ * Motion: Custom cubic-bezier curves & physical spring dynamics
  */
 
 /* ========================================
@@ -37,22 +36,6 @@
 }
 
 @font-face {
-  font-family: 'Zodiak';
-  src: url('/fonts/zodiak-400-normal.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Zodiak';
-  src: url('/fonts/zodiak-400-italic.woff2') format('woff2');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'JetBrains Mono';
   src: url('/fonts/jetbrains-mono-400_700-normal.woff2') format('woff2');
   font-weight: 400 700;
@@ -72,20 +55,20 @@
 
 :root {
   /* ========================================
-   * COLOR PALETTE — WARM CARBON & SIGNAL VERMILION
+   * COLOR PALETTE - OBSIDIAN SLATE & PAPER
    * ======================================== */
 
-  --ground: #0B0B0C;
-  --surface: #121214;
-  --surface-elevated: #17171A;
-  --ink: #F3F1EC;
-  --muted: #8E8B84;
-  --line: #222226;
-  --line-bright: #34343A;
-  --accent: #FF3B1D;
-  --accent-soft: rgba(255, 59, 29, 0.14);
-  --node-bg: #121214;
-  --edge: rgba(243, 241, 236, 0.16);
+  --ground: #08090B;
+  --surface: #111317;
+  --surface-elevated: #171A20;
+  --ink: #F2F0EB;
+  --muted: #9A9DA6;
+  --line: rgba(242, 240, 235, 0.09);
+  --line-bright: rgba(242, 240, 235, 0.24);
+  --accent: #5E8BFF;
+  --accent-soft: rgba(94, 139, 255, 0.14);
+  --node-bg: #111317;
+  --edge: rgba(242, 240, 235, 0.16);
 
   /* Aliases for compatibility */
   --color-ground: var(--ground);
@@ -101,7 +84,6 @@
    * ======================================== */
 
   --f-display: 'Clash Display', 'Geist', ui-sans-serif, system-ui, sans-serif;
-  --f-serif: 'Zodiak', Georgia, serif;
   --f-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
   --f-mono: 'JetBrains Mono', ui-monospace, monospace;
 
@@ -140,7 +122,7 @@
   --node-hover-buffer: 24px;
 
   /* ========================================
-   * EMIL KOWALSKI MOTION & EASING SYSTEM
+   * MOTION & EASING SYSTEM
    * ======================================== */
 
   --dur-instant: 0ms;
@@ -200,7 +182,6 @@
 
 /* ========================================
  * REDUCED MOTION
- * Respects user preference for reduced motion
  * ======================================== */
 @media (prefers-reduced-motion: reduce) {
   :root {

@@ -44,8 +44,8 @@ export const Edge: React.FC<EdgeProps> = ({
     (hoveredSkill !== null && hoveredSkill === edge.label);
   const active = isHighlighted || isThisEdgeHovered;
 
-  const strokeColor = active ? '#FF3B1D' : 'rgba(243, 241, 236, 0.16)';
-  const strokeOpacity = !isLoaded ? 0 : active ? 0.92 : 1;
+  const strokeColor = active ? '#5E8BFF' : 'rgba(242, 240, 235, 0.16)';
+  const strokeOpacity = !isLoaded ? 0 : active ? 0.94 : 1;
   const strokeWidth = active ? 1.75 : 1;
 
   return (
@@ -57,21 +57,19 @@ export const Edge: React.FC<EdgeProps> = ({
         transition: `opacity 300ms var(--ease-out) ${entranceDelayMs}ms`,
       }}
     >
-      {/* Subtle signal glow when active */}
       {active && (
         <line
           x1={x1}
           y1={y1}
           x2={x2}
           y2={y2}
-          stroke="#FF3B1D"
+          stroke="#5E8BFF"
           strokeWidth={5}
           strokeOpacity={0.14}
           strokeLinecap="round"
         />
       )}
 
-      {/* Architectural Hairline Edge */}
       <line
         x1={x1}
         y1={y1}
@@ -86,7 +84,6 @@ export const Edge: React.FC<EdgeProps> = ({
         }}
       />
 
-      {/* Interactive Skill Coordinate Tag at Edge Midpoint */}
       {edge.label && (
         <g
           transform={`translate(${midX}, ${midY})`}
@@ -101,8 +98,8 @@ export const Edge: React.FC<EdgeProps> = ({
             height={20}
             rx={3}
             ry={3}
-            fill={active ? '#17171A' : '#0B0B0C'}
-            stroke={active ? '#FF3B1D' : '#222226'}
+            fill={active ? '#171A20' : '#08090B'}
+            stroke={active ? '#5E8BFF' : 'rgba(242, 240, 235, 0.12)'}
             strokeWidth={1}
             style={{
               transition:
@@ -113,7 +110,7 @@ export const Edge: React.FC<EdgeProps> = ({
             x={0}
             y={3.5}
             textAnchor="middle"
-            fill={active ? '#F3F1EC' : '#8E8B84'}
+            fill={active ? '#F2F0EB' : '#9A9DA6'}
             style={{
               fontFamily: 'var(--f-mono)',
               fontSize: '10px',

@@ -15,10 +15,6 @@ export interface PreviewCardProps {
   onDismiss: () => void;
 }
 
-/**
- * Compute viewport-clamped position for the preview card (Property 3)
- * Guarantees the preview card remains 100% inside viewport bounds.
- */
 export function computeClampedCardPosition(
   nodeScreenX: number,
   nodeScreenY: number,
@@ -99,14 +95,13 @@ export const PreviewCard: React.FC<PreviewCardProps> = ({
         width: `${cardWidth}px`,
         zIndex: 'var(--z-preview)',
       }}
-      className="fixed rounded-[6px] hardware-surface-active overflow-hidden pointer-events-auto animate-popover-in"
+      className="fixed rounded-[7px] workbench-window-active overflow-hidden pointer-events-auto animate-popover-in"
     >
       {isProject && (() => {
         const proj = node.data as ProjectData;
         return (
           <div>
-            {/* Project Interface Preview Frame */}
-            <div className="relative h-[126px] w-full overflow-hidden bg-[#0B0B0C] border-b border-[#222226]">
+            <div className="relative h-[126px] w-full overflow-hidden bg-[#08090B] border-b border-[rgba(242,240,235,0.08)]">
               <img
                 src={proj.thumbnailUrl}
                 alt={`Preview of ${proj.name}`}
@@ -114,33 +109,31 @@ export const PreviewCard: React.FC<PreviewCardProps> = ({
                 height={360}
                 className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#17171A] via-transparent to-transparent opacity-80" />
-              <span className="absolute bottom-2.5 left-3 font-mono text-[10px] tracking-tight text-[#F3F1EC] bg-[#0B0B0C]/85 border border-[#222226] rounded-[3px] px-2 py-0.5 tabular-nums">
+              <span className="absolute bottom-2.5 left-3 font-mono text-[10px] tracking-tight text-[#F2F0EB] bg-[#08090B]/90 border border-[rgba(242,240,235,0.12)] rounded-[3px] px-2 py-0.5 tabular-nums">
                 {proj.year} · {proj.role}
               </span>
               <button
                 type="button"
                 onClick={onDismiss}
                 aria-label="Close preview card"
-                className="absolute top-2.5 right-2.5 inline-flex min-w-[28px] min-h-[28px] items-center justify-center rounded-[4px] bg-[#0B0B0C]/85 border border-[#222226] p-1 text-[#8E8B84] hover:text-[#F3F1EC] transition-colors tactile-press"
+                className="absolute top-2.5 right-2.5 inline-flex min-w-[28px] min-h-[28px] items-center justify-center rounded-[4px] bg-[#08090B]/90 border border-[rgba(242,240,235,0.14)] p-1 text-[#9A9DA6] hover:text-[#F2F0EB] hover:-translate-y-0.5 tactile-press cursor-pointer"
               >
-                <X className="w-3.5 h-3.5" />
+                <X className="w-3.5 h-3.5" aria-hidden="true" />
               </button>
             </div>
 
             <div className="p-4">
               <h3
                 style={{ fontFamily: 'var(--f-display)' }}
-                className="text-xl font-semibold tracking-[-0.025em] text-[#F3F1EC]"
+                className="text-xl font-semibold tracking-[-0.025em] text-[#F2F0EB]"
               >
                 {proj.name}
               </h3>
 
-              <p className="mt-1.5 text-xs md:text-[13px] text-[#8E8B84] leading-relaxed font-sans">
+              <p className="mt-1.5 text-xs md:text-[13px] text-[#9A9DA6] leading-relaxed font-sans">
                 {proj.brief}
               </p>
 
-              {/* Primary Technologies */}
               <div
                 className="mt-3 flex flex-wrap gap-1.5"
                 aria-label="Primary technologies"
@@ -148,19 +141,18 @@ export const PreviewCard: React.FC<PreviewCardProps> = ({
                 {proj.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="rounded-[3px] bg-[#0B0B0C] border border-[#222226] px-2 py-0.5 font-mono text-[10px] text-[#F3F1EC]"
+                    className="rounded-[3px] bg-[#08090B] border border-[rgba(242,240,235,0.09)] px-2 py-0.5 font-mono text-[10px] text-[#F2F0EB]"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
 
-              {/* Action links */}
-              <div className="mt-4 pt-3 border-t border-[#222226] flex items-center justify-between gap-2">
+              <div className="mt-4 pt-3 border-t border-[rgba(242,240,235,0.08)] flex items-center justify-between gap-2">
                 <button
                   type="button"
                   onClick={() => onNavigateProject(node)}
-                  className="inline-flex items-center gap-1.5 rounded-[4px] bg-[#F3F1EC] px-3 py-1.5 font-mono text-xs font-semibold text-[#0B0B0C] hover:bg-[#FF3B1D] hover:text-[#F3F1EC] cursor-pointer tactile-press"
+                  className="inline-flex min-h-[30px] items-center gap-1.5 rounded-[4px] bg-[#F2F0EB] px-3 py-1.5 font-mono text-xs font-semibold text-[#08090B] hover:bg-[#5E8BFF] hover:-translate-y-0.5 cursor-pointer tactile-press"
                 >
                   Inspect Case Study
                   <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
@@ -172,7 +164,7 @@ export const PreviewCard: React.FC<PreviewCardProps> = ({
                       href={proj.liveUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1 rounded-[4px] border border-[#222226] bg-[#0B0B0C] px-2.5 py-1.5 font-mono text-[11px] text-[#8E8B84] hover:border-[#F3F1EC]/50 hover:text-[#F3F1EC] tactile-press"
+                      className="inline-flex min-h-[30px] items-center gap-1 rounded-[4px] border border-[rgba(242,240,235,0.12)] bg-[#08090B] px-2.5 py-1.5 font-mono text-[11px] text-[#9A9DA6] hover:border-[#F2F0EB]/50 hover:text-[#F2F0EB] hover:-translate-y-0.5 tactile-press"
                     >
                       Live <ExternalLink className="w-3 h-3" aria-hidden="true" />
                     </a>
@@ -182,7 +174,7 @@ export const PreviewCard: React.FC<PreviewCardProps> = ({
                       href={proj.githubUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1 rounded-[4px] border border-[#222226] bg-[#0B0B0C] px-2.5 py-1.5 font-mono text-[11px] text-[#8E8B84] hover:border-[#F3F1EC]/50 hover:text-[#F3F1EC] tactile-press"
+                      className="inline-flex min-h-[30px] items-center gap-1 rounded-[4px] border border-[rgba(242,240,235,0.12)] bg-[#08090B] px-2.5 py-1.5 font-mono text-[11px] text-[#9A9DA6] hover:border-[#F2F0EB]/50 hover:text-[#F2F0EB] hover:-translate-y-0.5 tactile-press"
                     >
                       Code
                     </a>
@@ -200,29 +192,29 @@ export const PreviewCard: React.FC<PreviewCardProps> = ({
           <div className="p-4">
             <div className="flex items-start justify-between gap-2">
               <div>
-                <div className="flex items-center gap-2 font-mono text-[10px] text-[#8E8B84] tabular-nums">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF3B1D]" />
+                <div className="flex items-center gap-2 font-mono text-[10px] text-[#9A9DA6] tabular-nums">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#5E8BFF]" />
                   <span>{exp.dateLabel}</span>
                 </div>
                 <h3
                   style={{ fontFamily: 'var(--f-display)' }}
-                  className="text-xl font-semibold tracking-[-0.025em] text-[#F3F1EC] mt-1"
+                  className="text-xl font-semibold tracking-[-0.025em] text-[#F2F0EB] mt-1"
                 >
                   {exp.company}
                 </h3>
-                <p className="font-mono text-xs text-[#8E8B84]">{exp.role}</p>
+                <p className="font-mono text-xs text-[#9A9DA6]">{exp.role}</p>
               </div>
               <button
                 type="button"
                 onClick={onDismiss}
                 aria-label="Close preview card"
-                className="inline-flex min-w-[28px] min-h-[28px] items-center justify-center rounded-[4px] p-1 text-[#8E8B84] hover:text-[#F3F1EC] hover:bg-[#222226] tactile-press"
+                className="inline-flex min-w-[28px] min-h-[28px] items-center justify-center rounded-[4px] p-1 text-[#9A9DA6] hover:text-[#F2F0EB] hover:bg-[#1D212A] hover:-translate-y-0.5 tactile-press cursor-pointer"
               >
-                <X className="w-4 h-4" />
+                <X className="w-4 h-4" aria-hidden="true" />
               </button>
             </div>
 
-            <p className="mt-2.5 text-xs md:text-[13px] text-[#8E8B84] leading-relaxed font-sans">
+            <p className="mt-2.5 text-xs md:text-[13px] text-[#9A9DA6] leading-relaxed font-sans">
               {exp.description}
             </p>
 
@@ -230,19 +222,19 @@ export const PreviewCard: React.FC<PreviewCardProps> = ({
               {exp.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-[3px] bg-[#0B0B0C] border border-[#222226] px-2 py-0.5 font-mono text-[10px] text-[#F3F1EC]"
+                  className="rounded-[3px] bg-[#08090B] border border-[rgba(242,240,235,0.09)] px-2 py-0.5 font-mono text-[10px] text-[#F2F0EB]"
                 >
                   {tech}
                 </span>
               ))}
             </div>
 
-            <div className="mt-4 pt-3 border-t border-[#222226] flex items-center justify-between">
+            <div className="mt-4 pt-3 border-t border-[rgba(242,240,235,0.08)] flex items-center justify-between">
               <a
                 href={exp.url}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-[4px] bg-[#F3F1EC] px-3 py-1.5 font-mono text-xs font-semibold text-[#0B0B0C] hover:bg-[#FF3B1D] hover:text-[#F3F1EC] tactile-press"
+                className="inline-flex min-h-[30px] items-center gap-1.5 rounded-[4px] bg-[#F2F0EB] px-3 py-1.5 font-mono text-xs font-semibold text-[#08090B] hover:bg-[#5E8BFF] hover:-translate-y-0.5 tactile-press"
               >
                 Visit {exp.company}
                 <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />

@@ -13,10 +13,6 @@ import { gsap, MotionProvider, prefersReducedMotion } from '../lib/motion';
 import { FallbackListView } from '../components/graph/FallbackListView';
 import { SITE_META } from '../data/portfolio-content';
 
-/**
- * Custom 404 Page (Task 15, Requirements 9.1, 9.2, 9.3):
- * Single disconnected 120px node at viewport center with subtle idle drift and no edges.
- */
 function NotFoundComponent() {
   const [drift, setDrift] = useState({ x: 0, y: 0 });
 
@@ -35,49 +31,47 @@ function NotFoundComponent() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0B0B0C] text-[#F3F1EC] graph-grid-bg flex flex-col justify-between px-5 md:px-10 py-6">
+    <div className="min-h-screen bg-[#08090B] text-[#F2F0EB] workbench-grid flex flex-col justify-between px-5 md:px-10 py-6">
       <a
         href="#main-content"
-        className="fixed -top-24 left-6 z-[1200] inline-flex min-h-[38px] items-center rounded-[4px] bg-[#FF3B1D] px-4 py-2 font-mono text-xs font-semibold text-[#F3F1EC] transition-transform duration-200 focus:top-5"
+        className="fixed -top-24 left-6 z-[1200] inline-flex min-h-[38px] items-center rounded-[4px] bg-[#5E8BFF] px-4 py-2 font-mono text-xs font-semibold text-[#08090B] transition-transform duration-200 focus:top-5"
       >
         Skip to main content
       </a>
 
-      {/* Top Architectural Header */}
       <header className="flex items-center justify-between">
         <Link
           to="/"
           style={{ fontFamily: 'var(--f-display)' }}
-          className="inline-flex items-center gap-2.5 text-lg font-semibold tracking-[-0.03em] text-[#F3F1EC] tactile-press"
+          className="inline-flex min-h-[30px] items-center gap-2.5 text-lg font-semibold tracking-[-0.03em] text-[#F2F0EB] hover:-translate-y-0.5 tactile-press"
         >
-          <span className="w-2 h-2 rounded-full bg-[#FF3B1D]" />
+          <span className="w-2 h-2 rounded-[2px] bg-[#5E8BFF]" />
           {SITE_META.alias}
         </Link>
         <Link
           to="/"
-          className="rounded-[4px] bg-[#121214] border border-[#222226] hover:border-[#F3F1EC]/50 px-3.5 py-1.5 font-mono text-xs text-[#F3F1EC] tactile-press"
+          className="inline-flex min-h-[32px] items-center rounded-[4px] bg-[#111317] border border-[rgba(242,240,235,0.12)] hover:border-[#F2F0EB]/50 hover:-translate-y-0.5 px-3.5 py-1.5 font-mono text-xs text-[#F2F0EB] tactile-press"
         >
-          Home
+          Workbench
         </Link>
       </header>
 
-      {/* Center Disconnected Node (120px diameter) */}
       <main
         id="main-content"
         className="flex flex-col items-center justify-center text-center my-auto py-16"
       >
         <div
           style={{
-            width: '120px',
-            height: '120px',
+            width: '124px',
+            height: '124px',
             transform: `translate3d(${drift.x}px, ${drift.y}px, 0)`,
           }}
-          className="rounded-[6px] hardware-surface-active flex flex-col items-center justify-center p-3 select-none"
+          className="rounded-[7px] workbench-window-active flex flex-col items-center justify-center p-3 select-none"
         >
-          <span className="w-2 h-2 rounded-full bg-[#FF3B1D] mb-2 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-[#5E8BFF] mb-2" />
           <h1
             style={{ fontFamily: 'var(--f-display)', fontSize: 'var(--t-m)' }}
-            className="font-semibold text-[#F3F1EC] leading-tight"
+            className="font-semibold text-[#F2F0EB] leading-tight"
           >
             404:
             <br />
@@ -85,35 +79,40 @@ function NotFoundComponent() {
           </h1>
         </div>
 
-        <p className="mt-5 font-mono text-xs text-[#8E8B84]">
-          (disconnected node · no relational edges found)
+        <p className="mt-5 font-mono text-xs text-[#9A9DA6]">
+          (unlinked process · route window missing)
         </p>
 
         <Link
           to="/"
           style={{ fontSize: 'var(--t-s)' }}
-          className="mt-6 inline-flex items-center gap-2 rounded-[4px] bg-[#F3F1EC] px-4 py-2 font-mono text-xs font-semibold text-[#0B0B0C] hover:bg-[#FF3B1D] hover:text-[#F3F1EC] tactile-press"
+          className="mt-6 inline-flex min-h-[38px] items-center gap-2 rounded-[4px] bg-[#F2F0EB] px-4 py-2 font-mono text-xs font-semibold text-[#08090B] hover:bg-[#5E8BFF] hover:-translate-y-0.5 tactile-press"
         >
-          ← Back to Graph
+          Back to Workbench
         </Link>
       </main>
 
-      <footer className="flex items-center justify-between font-mono text-xs text-[#8E8B84]">
-        <span>© 2025 {SITE_META.alias}</span>
+      <footer className="flex items-center justify-between font-mono text-xs text-[#9A9DA6]">
+        <span>© 2026 {SITE_META.alias}</span>
         <span>STATUS: UNLINKED_ROUTE</span>
       </footer>
     </div>
   );
 }
 
-function ErrorComponent({ error }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error }: { error: unknown; reset?: () => void }) {
+  const errorMessage =
+    error instanceof Error
+      ? error.message
+      : 'An unexpected runtime error occurred.';
+
   useEffect(() => {
     console.error('[PortfolioErrorBoundary]', error);
   }, [error]);
 
   return (
     <FallbackListView
-      errorMessage={error?.message || 'An unexpected runtime error occurred.'}
+      errorMessage={errorMessage}
       onSwitchToGraph={() => {
         window.location.reload();
       }}
@@ -125,13 +124,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       {
-        title:
-          'Samin Yeasar (SOLEZ) — Full Stack Developer & Co-Founder | Interactive Node Graph Portfolio',
+        title: 'Samin Yeasar (SOLEZ) | Systems Engineer & Co-Founder',
       },
       {
         name: 'description',
         content:
-          'Interactive node-graph portfolio of Samin Yeasar (SOLEZ / Solez-ai), Full Stack Developer and Co-Founder & CTO at MentorMind. Explore systems built with React, TypeScript, Next.js, and Rust.',
+          'Interactive spatial workbench portfolio of Samin Yeasar (SOLEZ), Full Stack Developer and Co-Founder & CTO at MentorMind building React, TypeScript, and Rust tools.',
       },
       {
         name: 'keywords',
@@ -141,12 +139,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: 'author', content: 'Samin Yeasar' },
       {
         property: 'og:title',
-        content: 'Samin Yeasar (SOLEZ) — The Node Graph Portfolio',
+        content: 'Samin Yeasar (SOLEZ) | Spatial Workbench Portfolio',
       },
       {
         property: 'og:description',
         content:
-          'Explore SOLEZ projects, skills, and engineering case studies through an interactive spring-physics node graph.',
+          'Explore SOLEZ engineering systems, Rust tooling, and interactive case studies.',
       },
       { property: 'og:type', content: 'website' },
       { property: 'og:url', content: 'https://solez.vercel.app' },
@@ -154,12 +152,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: 'twitter:card', content: 'summary_large_image' },
       {
         name: 'twitter:title',
-        content: 'Samin Yeasar (SOLEZ) — The Node Graph Portfolio',
+        content: 'Samin Yeasar (SOLEZ) | Spatial Workbench Portfolio',
       },
       {
         name: 'twitter:description',
         content:
-          'Interactive spring-physics node graph portfolio by Samin Yeasar (SOLEZ).',
+          'Interactive spatial engineering workbench portfolio by Samin Yeasar (SOLEZ).',
       },
       { name: 'twitter:image', content: 'https://solez.vercel.app/og.png' },
       { property: 'og:image:width', content: '1200' },
@@ -235,7 +233,7 @@ function RootShell({ children }: { children: ReactNode }) {
               mainEntityOfPage: {
                 '@type': 'WebSite',
                 '@id': 'https://solez.vercel.app',
-                name: 'Samin Yeasar — Portfolio',
+                name: 'Samin Yeasar Portfolio',
                 description:
                   'Full Stack Developer and Co-Founder building MentorMind.',
               },

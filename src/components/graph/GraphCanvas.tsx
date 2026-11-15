@@ -1,12 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 import { usePinch } from '@use-gesture/react';
-import { Minus, Plus, RotateCcw } from 'lucide-react';
+import { AppWindow, Minus, Plus, RotateCcw } from 'lucide-react';
 import {
   CONTACTS,
   type GraphNode,
   type ProjectData,
-  SITE_META,
   SKILLS,
 } from '@/data/portfolio-content';
 import { gsap, prefersReducedMotion } from '@/lib/motion/engine';
@@ -15,16 +14,17 @@ import type { Vector2D } from '@/lib/physics/spring';
 import { useIdleDrift } from '@/hooks/useIdleDrift';
 import { useURLState } from '@/hooks/useURLState';
 import { useGraphStore } from '@/store/graph-store';
-import { AmbientTechField } from './AmbientTechField';
 import { Edge } from './Edge';
 import { Node } from './Node';
 import { PreviewCard } from './PreviewCard';
 
 export interface GraphCanvasProps {
-  onFallbackRequested?: () => void;
+  onSwitchToWorkbench?: () => void;
 }
 
-export const GraphCanvas: React.FC<GraphCanvasProps> = () => {
+export const GraphCanvas: React.FC<GraphCanvasProps> = ({
+  onSwitchToWorkbench,
+}) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const physicsRef = useRef<PhysicsEngine | null>(null);
   const morphOverlayRef = useRef<HTMLDivElement>(null);
@@ -225,7 +225,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = () => {
                 top: rect.top,
                 width: rect.width,
                 height: rect.height,
-                borderRadius: '5px',
+                borderRadius: '6px',
                 opacity: 1,
               },
               {
@@ -233,7 +233,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = () => {
                 top: 88,
                 width: Math.min(window.innerWidth - 48, 1180),
                 height: Math.min(window.innerHeight * 0.52, 440),
-                borderRadius: '6px',
+                borderRadius: '7px',
                 duration: 0.42,
                 ease: 'expo.inOut',
                 onComplete: () => {
@@ -307,7 +307,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = () => {
     <div
       ref={containerRef}
       role="region"
-      aria-label="Interactive portfolio graph, 5 projects, 2 experiences"
+      aria-label="Interactive kernel dependency graph, 5 projects, 2 roles"
       aria-describedby="graph-drag-hint"
       onClick={(e) => {
         if (e.target === e.currentTarget) {
@@ -315,33 +315,44 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = () => {
           setEdgeHover(null, null);
         }
       }}
-      className="relative w-full h-[100svh] min-h-[640px] overflow-hidden graph-grid-bg select-none"
+      className="relative w-full h-[100svh] min-h-[640px] bg-[#08090B] overflow-hidden graph-grid-bg select-none"
     >
       {/* Architectural Crosshair Axis Lines & Orbital Rings */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 flex items-center justify-center"
       >
-        <div className="w-full h-px bg-[#222226]/55" />
-        <div className="absolute h-full w-px bg-[#222226]/55" />
-        <div className="absolute w-[340px] h-[340px] md:w-[540px] md:h-[420px] rounded-full border border-[#222226]/45" />
-        <div className="absolute w-[560px] h-[560px] md:w-[880px] md:h-[640px] rounded-full border border-dashed border-[#222226]/35" />
+        <div className="w-full h-px bg-[rgba(242,240,235,0.06)]" />
+        <div className="absolute h-full w-px bg-[rgba(242,240,235,0.06)]" />
+        <div className="absolute w-[340px] h-[340px] md:w-[540px] md:h-[420px] rounded-full border border-[rgba(242,240,235,0.05)]" />
+        <div className="absolute w-[560px] h-[560px] md:w-[880px] md:h-[640px] rounded-full border border-dashed border-[rgba(242,240,235,0.04)]" />
       </div>
 
-      {/* Massive Architectural Poster Watermark behind the graph */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-14 md:bottom-12 flex justify-center overflow-hidden"
-      >
-        <span
+      {/* Quiet Corner Context Overlay */}
+      <div className="pointer-events-none absolute top-20 left-5 md:left-10 z-20 max-w-sm space-y-2">
+        <div className="flex items-center gap-2 font-mono text-xs text-[#9A9DA6]">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#5E8BFF]" />
+          <span>Hooke Spring Physics · Graph Mode</span>
+        </div>
+        <h1
           style={{ fontFamily: 'var(--f-display)' }}
-          className="text-[24vw] md:text-[19vw] font-bold leading-[0.8] tracking-[-0.055em] text-[#F3F1EC]/[0.028] select-none"
+          className="text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-[#F2F0EB] leading-[1.02]"
         >
-          {SITE_META.alias}
-        </span>
+          Kernel Dependency Graph
+        </h1>
+        {onSwitchToWorkbench && (
+          <button
+            type="button"
+            onClick={onSwitchToWorkbench}
+            className="pointer-events-auto inline-flex min-h-[30px] items-center gap-1.5 rounded-[4px] border border-[rgba(242,240,235,0.14)] bg-[#111317]/90 px-2.5 py-1 font-mono text-[11px] text-[#F2F0EB] hover:border-[#5E8BFF] hover:-translate-y-0.5 cursor-pointer tactile-press"
+          >
+            <AppWindow className="w-3 h-3 text-[#5E8BFF]" aria-hidden="true" />
+            <span>Back to Workbench</span>
+          </button>
+        )}
       </div>
 
-      {/*Transformed Graph Stage (Pan + Zoom)*/}
+      {/* Transformed Graph Stage */}
       <div
         className="relative w-full h-full origin-center"
         style={{
@@ -351,15 +362,6 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = () => {
             : 'transform 160ms var(--ease-out)',
         }}
       >
-        {/* Ambient Greyed-Out Gradient Language & Framework Logos around the Nodes */}
-        <AmbientTechField
-          hoveredSkill={hoveredSkill}
-          activeNodeSkills={
-            activeNodeId ? nodeConnectionsMap.get(activeNodeId)?.skills ?? [] : []
-          }
-        />
-
-        {/* SVG Relational Edge Layer */}
         <svg
           aria-hidden="true"
           className="absolute inset-0 w-full h-full pointer-events-none"
@@ -391,7 +393,6 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = () => {
           })}
         </svg>
 
-        {/* Interactive DOM Nodes Layer */}
         <div className="absolute inset-0 w-full h-full pointer-events-none">
           {orderedNodes.map((node, index) => {
             const conn = nodeConnectionsMap.get(node.id);
@@ -452,7 +453,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = () => {
         }}
       />
 
-      {/* Bottom-Left Corner Anchor inside Hero Stage: Social Telemetry Links */}
+      {/* Bottom-Left Social Anchor Links */}
       <div className="absolute bottom-5 left-5 md:left-10 z-30 hidden md:flex items-center gap-2">
         {CONTACTS.slice(0, 4).map((social) => (
           <a
@@ -460,22 +461,22 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = () => {
             href={social.url}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex min-h-[28px] items-center px-2 py-1 font-mono text-xs text-[#8E8B84] hover:text-[#F3F1EC] hover:-translate-y-0.5 transition-all tactile-press"
+            className="inline-flex min-h-[28px] items-center px-2 py-1 font-mono text-xs text-[#9A9DA6] hover:text-[#F2F0EB] hover:-translate-y-0.5 tactile-press"
           >
             {social.platform}
           </a>
         ))}
       </div>
 
-      {/* Bottom-Center: Tactile Skill Matrix Filter Dock (Desktop) */}
+      {/* Bottom-Center Skill Matrix Filter Dock */}
       <div
         aria-label="Filter graph nodes by technology skill"
-        className="absolute bottom-5 left-1/2 -translate-x-1/2 z-30 hidden xl:flex items-center gap-1 rounded-[5px] bg-[#121214]/90 backdrop-blur-md border border-[#222226] px-2.5 py-1"
+        className="absolute bottom-5 left-1/2 -translate-x-1/2 z-30 hidden xl:flex items-center gap-1 rounded-[5px] bg-[#111317]/95 backdrop-blur-md border border-[rgba(242,240,235,0.1)] px-2.5 py-1"
       >
-        <span className="font-mono text-[10px] text-[#8E8B84] px-2">
-          FILTER MATRIX
+        <span className="font-mono text-[10px] text-[#9A9DA6] px-2">
+          FILTER
         </span>
-        <span aria-hidden="true" className="h-3.5 w-px bg-[#222226] mr-1" />
+        <span aria-hidden="true" className="h-3.5 w-px bg-[rgba(242,240,235,0.1)] mr-1" />
         {SKILLS.map((skill) => {
           const isSkillActive = hoveredSkill === skill.name;
           return (
@@ -491,10 +492,10 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = () => {
                 )
               }
               className={[
-                'inline-flex min-h-[26px] items-center rounded-[3px] px-2.5 py-1 font-mono text-[11px] cursor-pointer tactile-press',
+                'inline-flex min-h-[26px] items-center rounded-[3px] px-2.5 py-1 font-mono text-[11px] cursor-pointer hover:-translate-y-0.5 tactile-press',
                 isSkillActive
-                  ? 'bg-[#FF3B1D] text-[#F3F1EC] font-medium'
-                  : 'text-[#8E8B84] hover:text-[#F3F1EC] hover:bg-[#17171A]',
+                  ? 'bg-[#5E8BFF] text-[#08090B] font-semibold'
+                  : 'text-[#9A9DA6] hover:text-[#F2F0EB] hover:bg-[#171A20]',
               ].join(' ')}
             >
               {skill.name}
@@ -503,55 +504,55 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = () => {
         })}
       </div>
 
-      {/* Bottom-Right: Telemetry Hint + Precision Zoom Controls */}
+      {/* Bottom-Right Zoom & Reset Controls */}
       <div className="absolute bottom-5 right-5 md:right-10 z-30 flex items-center gap-3">
         <p
           id="graph-drag-hint"
           className={[
-            'font-mono text-[11px] text-[#8E8B84] transition-opacity duration-500 hidden sm:flex items-center gap-2',
+            'font-mono text-[11px] text-[#9A9DA6] transition-opacity duration-500 hidden sm:flex items-center gap-2',
             hasInteracted ? 'opacity-45' : 'opacity-90',
           ].join(' ')}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#FF3B1D]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#5E8BFF]" />
           <span>Drag nodes · Click project to inspect</span>
         </p>
 
         <div
           role="group"
           aria-label="Graph zoom controls"
-          className="flex items-center rounded-[5px] bg-[#121214]/95 border border-[#222226] p-1 gap-0.5"
+          className="flex items-center rounded-[5px] bg-[#111317]/95 border border-[rgba(242,240,235,0.1)] p-1 gap-0.5"
         >
           <button
             type="button"
             onClick={() => setZoom(zoom - 0.15)}
             aria-label="Zoom out graph"
-            className="p-1.5 rounded-[3px] text-[#8E8B84] hover:text-[#F3F1EC] hover:bg-[#17171A] cursor-pointer tactile-press"
+            className="inline-flex min-w-[26px] min-h-[26px] items-center justify-center rounded-[3px] text-[#9A9DA6] hover:text-[#F2F0EB] hover:bg-[#171A20] hover:-translate-y-0.5 cursor-pointer tactile-press"
           >
-            <Minus className="w-3.5 h-3.5" />
+            <Minus className="w-3.5 h-3.5" aria-hidden="true" />
           </button>
-          <span className="font-mono text-[11px] text-[#F3F1EC] px-1.5 tabular-nums min-w-[42px] text-center">
+          <span className="font-mono text-[11px] text-[#F2F0EB] px-1.5 tabular-nums min-w-[42px] text-center">
             {Math.round(zoom * 100)}%
           </span>
           <button
             type="button"
             onClick={() => setZoom(zoom + 0.15)}
             aria-label="Zoom in graph"
-            className="p-1.5 rounded-[3px] text-[#8E8B84] hover:text-[#F3F1EC] hover:bg-[#17171A] cursor-pointer tactile-press"
+            className="inline-flex min-w-[26px] min-h-[26px] items-center justify-center rounded-[3px] text-[#9A9DA6] hover:text-[#F2F0EB] hover:bg-[#171A20] hover:-translate-y-0.5 cursor-pointer tactile-press"
           >
-            <Plus className="w-3.5 h-3.5" />
+            <Plus className="w-3.5 h-3.5" aria-hidden="true" />
           </button>
           <button
             type="button"
             onClick={handleReset}
             aria-label="Reset graph layout and zoom"
-            className="p-1.5 rounded-[3px] text-[#8E8B84] hover:text-[#FF3B1D] hover:bg-[#17171A] cursor-pointer tactile-press"
+            className="inline-flex min-w-[26px] min-h-[26px] items-center justify-center rounded-[3px] text-[#9A9DA6] hover:text-[#5E8BFF] hover:bg-[#171A20] hover:-translate-y-0.5 cursor-pointer tactile-press"
           >
-            <RotateCcw className="w-3.5 h-3.5" />
+            <RotateCcw className="w-3.5 h-3.5" aria-hidden="true" />
           </button>
         </div>
       </div>
 
-      {/* Shared-Element Transition Morph Overlay */}
+      {/* Shared-Element Morph Overlay */}
       {morphingNode && (
         <div
           ref={morphOverlayRef}
@@ -560,11 +561,11 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = () => {
             position: 'fixed',
             zIndex: 1000,
           }}
-          className="hardware-surface-active rounded-[6px] flex items-center justify-center pointer-events-none"
+          className="workbench-window-active rounded-[6px] flex items-center justify-center pointer-events-none"
         >
           <span
             style={{ fontFamily: 'var(--f-display)' }}
-            className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-[#F3F1EC]"
+            className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-[#F2F0EB]"
           >
             {morphingNode.label}
           </span>

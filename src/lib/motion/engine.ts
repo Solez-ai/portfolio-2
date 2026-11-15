@@ -109,7 +109,7 @@ export function initScroll() {
   // Sync Lenis with GSAP ticker (single clock)
   lenis.on('scroll', (lenisInstance: Lenis) => {
     scrollState.y = lenisInstance.scroll;
-    scrollState.velocity = lenisInstance.velocity;
+    scrollState.velocity = (lenisInstance as unknown as { velocity?: number }).velocity ?? 0;
     // Normalize progress: Lenis reports 1 on pages that can't scroll
     scrollState.progress = lenisInstance.limit > 0 
       ? lenisInstance.scroll / lenisInstance.limit 

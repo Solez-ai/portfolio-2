@@ -1,11 +1,11 @@
-import dragWinImg from '@/assets/proj-3dragwin.png';
-import nodexImg from '@/assets/proj-nodex.png';
-import vellImg from '@/assets/proj-vell.png';
-import urlpadImg from '@/assets/proj-urlpad.png';
-import pysketchImg from '@/assets/proj-pysketch.png';
+import dragWinImg from '@/assets/proj-3dragwin.webp';
+import nodexImg from '@/assets/proj-nodex.webp';
+import vellImg from '@/assets/proj-vell.webp';
+import urlpadImg from '@/assets/proj-urlpad.webp';
+import pysketchImg from '@/assets/proj-pysketch.webp';
 import mentormindLogo from '@/assets/mentormind.png';
 import solvenaiLogo from '@/assets/solvenai.png';
-import avatarImg from '@/assets/avatar.jpg';
+import avatarImg from '@/assets/avatar.webp';
 
 export type NodeType = 'project' | 'experience' | 'skill' | 'contact';
 

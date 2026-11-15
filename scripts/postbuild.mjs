@@ -85,14 +85,14 @@ for (const cs of CASE_STUDIES) {
     <link rel="preload" href="/fonts/geist-400_700-normal.woff2" as="font" type="font/woff2" crossorigin />
     ${assetTags}
   </head>
-  <body style="background-color:#0B0B0C;color:#F3F1EC;margin:0;">
+  <body style="background-color:#08090B;color:#F2F0EB;margin:0;">
     <div id="root">
       <main id="main-content" style="max-width:64rem;margin:0 auto;padding:3rem 1.5rem;font-family:'Geist',system-ui,sans-serif;">
-        <p><a href="/">Back to Graph</a></p>
+        <p><a href="/">Back to Workbench</a></p>
         <h1 style="font-family:'JetBrains Mono',monospace;">${cs.heading}</h1>
         <p>${cs.body}</p>
         <h2>Context &amp; Engineering Architecture</h2>
-        <p>Designed and engineered by Samin Yeasar (SOLEZ), Full Stack Developer and Co-Founder &amp; CTO at MentorMind in Bangladesh. Explore the interactive node graph or inspect the source repository and live deployment.</p>
+        <p>Designed and engineered by Samin Yeasar (SOLEZ), Full Stack Developer and Co-Founder &amp; CTO at MentorMind in Bangladesh. Explore the spatial workbench or inspect the source repository and live deployment.</p>
       </main>
     </div>
   </body>
@@ -107,10 +107,10 @@ const notFoundHtml = `<!doctype html>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>404: Not Found | Samin Yeasar (SOLEZ)</title>
-    <meta name="description" content="404 Not Found: This route is a disconnected node outside the SOLEZ portfolio graph. Return to the main interactive node graph." />
+    <meta name="description" content="404 Not Found: This route is outside the SOLEZ spatial workbench. Return to the main interactive portfolio." />
     <link rel="canonical" href="https://solez.vercel.app/404" />
     <meta property="og:title" content="404: Not Found | Samin Yeasar (SOLEZ)" />
-    <meta property="og:description" content="Disconnected node: return to the interactive SOLEZ portfolio graph." />
+    <meta property="og:description" content="Unlinked process: return to the interactive SOLEZ workbench portfolio." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://solez.vercel.app/og.png" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -119,15 +119,15 @@ const notFoundHtml = `<!doctype html>
     <link rel="preload" href="/fonts/geist-400_700-normal.woff2" as="font" type="font/woff2" crossorigin />
     ${assetTags}
   </head>
-  <body style="background-color:#0B0B0C;color:#F3F1EC;margin:0;">
+  <body style="background-color:#08090B;color:#F2F0EB;margin:0;">
     <div id="root">
-      <a href="#main-content" style="position:fixed;top:-100px;left:16px;padding:8px 16px;background:#FF3B1D;color:#F3F1EC;">Skip to main content</a>
+      <a href="#main-content" style="position:fixed;top:-100px;left:16px;padding:8px 16px;background:#5E8BFF;color:#08090B;">Skip to main content</a>
       <main id="main-content" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;font-family:'JetBrains Mono',monospace;">
-        <div style="width:120px;height:120px;border-radius:6px;background:#121214;border:1px solid #F3F1EC;display:flex;align-items:center;justify-content:center;padding:0.75rem;">
-          <h1 style="font-size:1.125rem;margin:0;color:#F3F1EC;">404: Not Found</h1>
+        <div style="width:124px;height:124px;border-radius:7px;background:#111317;border:1px solid rgba(242,240,235,0.22);display:flex;align-items:center;justify-content:center;padding:0.75rem;">
+          <h1 style="font-size:1.125rem;margin:0;color:#F2F0EB;">404: Not Found</h1>
         </div>
-        <p style="color:#8E8B84;font-size:0.875rem;margin-top:1.25rem;max-width:32rem;">This requested URL is a disconnected node with no relational edges in the SOLEZ portfolio graph. Use the link below to return to the primary interactive graph visualization and explore featured engineering projects including Nodex, 3DragWin, Vell, URLPad, and PySketch.</p>
-        <p style="margin-top:1.5rem;"><a href="/" style="color:#F3F1EC;text-decoration:underline;">Back to Graph</a></p>
+        <p style="color:#9A9DA6;font-size:0.875rem;margin-top:1.25rem;max-width:32rem;">This requested URL is not mapped inside the SOLEZ engineering workbench. Use the link below to return to the primary spatial workspace and explore featured projects including Nodex, 3DragWin, Vell, URLPad, and PySketch.</p>
+        <p style="margin-top:1.5rem;"><a href="/" style="color:#F2F0EB;text-decoration:underline;">Back to Workbench</a></p>
       </main>
     </div>
   </body>
