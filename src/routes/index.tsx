@@ -3,7 +3,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/portfolio/Header";
 import { Bio } from "@/components/portfolio/Bio";
 import { SocialCards } from "@/components/portfolio/SocialCards";
-import { QuickLinks } from "@/components/portfolio/QuickLinks";
 import { Skills } from "@/components/portfolio/Skills";
 import { WorkExperience } from "@/components/portfolio/WorkExperience";
 import { Contributions } from "@/components/portfolio/Contributions";
@@ -21,7 +20,6 @@ const SECTIONS = [
   Header,
   Bio,
   SocialCards,
-  QuickLinks,
   Skills,
   WorkExperience,
   Contributions,

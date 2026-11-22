@@ -1,5 +1,5 @@
 import { SiReact, SiTailwindcss, SiPostgresql, SiSupabase, SiNextdotjs, SiTypescript } from "react-icons/si";
-import { Database } from "lucide-react";
+import { ArrowUpRight, Database, Mail } from "lucide-react";
 import type { ReactNode } from "react";
 
 const Chip = ({ icon, children }: { icon?: ReactNode; children: ReactNode }) => (
@@ -23,9 +23,31 @@ export function Bio() {
         and by using modern databases like{" "}
         <Chip icon={<SiPostgresql className="w-4 h-4 text-[#4169e1]" />}>PostgreSQL</Chip>.
       </p>
-      <p className="text-xs text-muted-foreground font-mono">
-        <span className="text-accent-green">//</span> aliases: <strong className="text-foreground">Solez-ai</strong> · <strong className="text-foreground">SOLEZ-AI</strong> · <strong className="text-foreground">solez.ai</strong> · <strong className="text-foreground">SOLEZ</strong>
-      </p>
+      <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+        <p className="text-xs text-muted-foreground font-mono">
+          <span className="text-accent-green">//</span> aliases:{" "}
+          <strong className="text-foreground">Solez-ai</strong> ·{" "}
+          <strong className="text-foreground">SOLEZ-AI</strong> ·{" "}
+          <strong className="text-foreground">solez.ai</strong> ·{" "}
+          <strong className="text-foreground">SOLEZ</strong>
+        </p>
+
+        <a
+          href="mailto:sheditzofficial918@gmail.com"
+          className="cursor-hover group relative inline-flex items-center gap-2 rounded-lg bg-foreground text-background font-semibold text-sm px-4 py-2 border border-white/20 shadow-[0_4px_0_0_rgba(255,255,255,0.22),0_12px_28px_-8px_rgba(255,255,255,0.32)] transition-all duration-150 hover:-translate-y-0.5 hover:shadow-[0_6px_0_0_rgba(255,255,255,0.26),0_16px_32px_-8px_rgba(255,255,255,0.42)] active:translate-y-0.5 active:shadow-[0_1px_0_0_rgba(255,255,255,0.2)]"
+        >
+          <span className="relative flex h-2 w-2" aria-hidden="true">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+          </span>
+          <Mail className="w-4 h-4" aria-hidden="true" />
+          <span>Email Me</span>
+          <ArrowUpRight
+            className="w-4 h-4 opacity-70 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
+            aria-hidden="true"
+          />
+        </a>
+      </div>
     </div>
   );
 }

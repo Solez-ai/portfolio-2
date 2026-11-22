@@ -1,12 +1,16 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { SparkleOverlay } from "./SparkleOverlay";
+import { LiquidGlassClock } from "./LiquidGlassClock";
 
 // ─── Time & Date formatting ─────────────────────────────────────────────────
-function formatTime(d: Date) {
+function formatClockParts(d: Date) {
   const h = d.getHours();
   const m = d.getMinutes();
   const h12 = h % 12 || 12;
-  return `${h12}:${m.toString().padStart(2, "0")}`;
+  return {
+    hours: h12.toString().padStart(2, "0"),
+    minutes: m.toString().padStart(2, "0"),
+  };
 }
 
 function formatStatusTime(d: Date) {
@@ -18,11 +22,10 @@ function formatStatusTime(d: Date) {
 }
 
 function formatDate(d: Date) {
-  return d.toLocaleDateString("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-  });
+  const weekday = d.toLocaleDateString("en-US", { weekday: "short" });
+  const day = d.getDate();
+  const month = d.toLocaleDateString("en-US", { month: "short" });
+  return `${weekday} ${day} ${month}`;
 }
 
 // ─── Real Damped Harmonic Oscillator (Apple-style mass-spring-damper) ───────
@@ -146,8 +149,9 @@ interface LockScreenProps {
 
 export function LockScreen({ onUnlock, onProgress }: LockScreenProps) {
   const [mounted, setMounted] = useState(true);
+  const [entered, setEntered] = useState(false);
   const [sparklesPaused, setSparklesPaused] = useState(false);
-  const [time, setTime] = useState(() => formatTime(new Date()));
+  const [clockParts, setClockParts] = useState(() => formatClockParts(new Date()));
   const [statusTime, setStatusTime] = useState(() => formatStatusTime(new Date()));
   const [date, setDate] = useState(() => formatDate(new Date()));
   const [batteryLevel, setBatteryLevel] = useState(87);
@@ -203,7 +207,7 @@ export function LockScreen({ onUnlock, onProgress }: LockScreenProps) {
   useEffect(() => {
     const tick = () => {
       const d = new Date();
-      setTime(formatTime(d));
+      setClockParts(formatClockParts(d));
       setStatusTime(formatStatusTime(d));
       setDate(formatDate(d));
     };
@@ -227,6 +231,37 @@ export function LockScreen({ onUnlock, onProgress }: LockScreenProps) {
         });
       }
     } catch {}
+  }, []);
+
+  // Smooth OLED wake cross-fade on initial mount (waits for wallpaper decode or 180ms max)
+  useEffect(() => {
+    let done = false;
+    let raf1 = 0;
+    let raf2 = 0;
+    const reveal = () => {
+      if (done) return;
+      done = true;
+      raf1 = requestAnimationFrame(() => {
+        raf2 = requestAnimationFrame(() => setEntered(true));
+      });
+    };
+
+    const img = new Image();
+    img.src = "/wallpaper.jpg";
+    if (img.complete) {
+      reveal();
+    } else {
+      img.onload = reveal;
+      img.onerror = reveal;
+    }
+    const fallback = setTimeout(reveal, 180);
+
+    return () => {
+      done = true;
+      clearTimeout(fallback);
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+    };
   }, []);
 
   // Lock page scroll while lockscreen is mounted
@@ -641,20 +676,29 @@ export function LockScreen({ onUnlock, onProgress }: LockScreenProps) {
       {/* ── Rising iOS Frosted Glass Curtain (GPU transform + opacity ONLY) ── */}
       <div
         ref={sheetRef}
-        className="absolute inset-0 overflow-hidden will-change-transform"
+        className="absolute inset-0 overflow-hidden will-change-transform bg-[#0b0b0c]"
         style={{
           transform: "translate3d(0, 0, 0)",
           boxShadow: "0 24px 64px rgba(0, 0, 0, 0.55)",
         }}
       >
-        {/* Static pre-blurred wallpaper — rasterized ONCE on GPU, never re-blurred! */}
+        {/* Initial wake cross-fade wrapper (separate from unlock springs) */}
+        <div
+          className="absolute inset-0"
+          style={{
+            opacity: entered ? 1 : 0,
+            transform: entered ? "scale(1)" : "scale(1.025)",
+            transition: "opacity 850ms cubic-bezier(0.22, 1, 0.36, 1), transform 950ms cubic-bezier(0.22, 1, 0.36, 1)",
+          }}
+        >
+        {/* Crisp, unblurred wallpaper — lets the Liquid Glass refraction pop just like iOS 26 */}
         <div
           ref={bgRef}
           className="absolute inset-0 bg-cover bg-center will-change-transform"
           style={{
             backgroundImage: "url(/wallpaper.jpg)",
-            filter: "blur(16px) saturate(1.15) brightness(0.84)",
-            transform: "translate3d(0, 0, 0) scale(1.08)",
+            filter: "saturate(1.12) brightness(0.9)",
+            transform: "translate3d(0, 0, 0) scale(1.06)",
           }}
         />
 
@@ -716,70 +760,62 @@ export function LockScreen({ onUnlock, onProgress }: LockScreenProps) {
             </div>
           </div>
 
-          {/* ── Hero Lock Icon, Date & Clock ── */}
-          <div className="flex-1 flex flex-col items-center justify-center min-h-0 -mt-8">
+          {/* ── Hero Lock Icon, Date & Stretched Liquid Glass Clock ── */}
+          <div className="flex-1 flex flex-col items-center justify-center min-h-0 -mt-6">
             {/* Apple-style Padlock with spring-animated shackle */}
-            <div ref={lockWrapRef} className="mb-3 will-change-transform">
-              <svg width="20" height="24" viewBox="0 0 20 24" fill="none" aria-hidden="true" className="overflow-visible">
+            <div ref={lockWrapRef} className="mb-2 will-change-transform">
+              <svg width="18" height="22" viewBox="0 0 20 24" fill="none" aria-hidden="true" className="overflow-visible">
                 <path
                   ref={lockShackleRef}
                   d="M5.5 10V7a4.5 4.5 0 0 1 9 0v3"
-                  stroke="rgba(255,255,255,0.88)"
+                  stroke="rgba(255,255,255,0.9)"
                   strokeWidth="2"
                   strokeLinecap="round"
                   style={{ transformOrigin: "14.5px 10px" }}
                 />
-                <rect x="3" y="10" width="14" height="11" rx="3" fill="rgba(255,255,255,0.88)" />
+                <rect x="3" y="10" width="14" height="11" rx="3" fill="rgba(255,255,255,0.9)" />
               </svg>
             </div>
 
-            {/* Date above Clock (classic iOS Lock Screen hierarchy) */}
+            {/* Compact iOS 26 Date above Clock */}
             <div
               ref={dateRef}
-              className="text-lg sm:text-xl text-white/85 font-medium tracking-wide will-change-transform mb-1"
-              style={{ textShadow: "0 1px 16px rgba(0,0,0,0.28)" }}
+              className="text-lg sm:text-xl text-white/95 font-semibold tracking-tight will-change-transform mb-1"
+              style={{ textShadow: "0 2px 14px rgba(0,0,0,0.32)" }}
             >
               {date}
             </div>
 
-            {/* Clock */}
-            <div ref={clockRef} className="relative text-center will-change-transform">
-              <div
-                className="text-[18vw] sm:text-[12vw] md:text-[7.5rem] lg:text-[8.5rem] font-[300] leading-none tracking-[-0.02em] text-white/95"
-                style={{
-                  textShadow: "0 4px 32px rgba(0,0,0,0.28), 0 1px 6px rgba(0,0,0,0.18)",
-                }}
-              >
-                {time}
-              </div>
+            {/* Stretched iOS 26 Optical Liquid Glass Clock (SVG refraction, zero CSS blur) */}
+            <div ref={clockRef} className="relative text-center will-change-transform -mt-4">
+              <LiquidGlassClock hours={clockParts.hours} minutes={clockParts.minutes} />
             </div>
           </div>
 
-          {/* ── Bottom Section: Notification, DND, Home Indicator ── */}
+          {/* ── Bottom Section: Liquid Glass Notification, DND, Home Indicator ── */}
           <div className="shrink-0 flex flex-col items-center pb-7 w-full relative">
-            {/* Liquid Glass Notification Card */}
+            {/* Liquid Glass Notification Card (optical specular glass, no heavy CSS blur) */}
             <div ref={notifRef} className="w-full max-w-sm mb-3.5 relative will-change-transform">
               <div
-                className="relative overflow-hidden rounded-2xl p-4 border border-white/20"
+                className="relative overflow-hidden rounded-[22px] p-4"
                 style={{
                   background:
-                    "linear-gradient(145deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.07) 55%, rgba(255,255,255,0.13) 100%)",
-                  backdropFilter: "blur(20px) saturate(1.4)",
-                  WebkitBackdropFilter: "blur(20px) saturate(1.4)",
+                    "linear-gradient(155deg, rgba(255,255,255,0.26) 0%, rgba(255,255,255,0.08) 48%, rgba(255,255,255,0.18) 100%)",
+                  border: "1px solid rgba(255,255,255,0.38)",
                   boxShadow:
-                    "0 10px 30px rgba(0,0,0,0.24), inset 0 1px 0 rgba(255,255,255,0.32), inset 0 -1px 0 rgba(255,255,255,0.08)",
+                    "0 12px 32px rgba(0,0,0,0.26), inset 0 1.5px 0 rgba(255,255,255,0.65), inset 0 -1px 0 rgba(255,255,255,0.18), inset 1px 0 0 rgba(255,255,255,0.28)",
                 }}
               >
                 <div
                   className="absolute top-0 left-0 right-0 h-[1px]"
-                  style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.65), transparent)" }}
+                  style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.85), transparent)" }}
                 />
                 <div className="flex items-start gap-3 relative z-10">
                   <div
                     className="w-9 h-9 rounded-full flex items-center justify-center shrink-0"
                     style={{
                       background: "linear-gradient(135deg, #007aff, #5856d6)",
-                      boxShadow: "0 2px 8px rgba(0,122,255,0.3)",
+                      boxShadow: "0 2px 8px rgba(0,122,255,0.35)",
                     }}
                     aria-hidden="true"
                   >
@@ -792,10 +828,10 @@ export function LockScreen({ onUnlock, onProgress }: LockScreenProps) {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <span className="text-white/95 font-semibold text-sm">Portfolio</span>
-                      <span className="text-white/55 text-[11px] font-medium">now</span>
+                      <span className="text-white font-semibold text-sm drop-shadow-sm">Portfolio</span>
+                      <span className="text-white/70 text-[11px] font-medium">now</span>
                     </div>
-                    <p className="text-white/80 text-sm mt-0.5 leading-snug">
+                    <p className="text-white/90 text-sm mt-0.5 leading-snug drop-shadow-sm">
                       Welcome to the portfolio — swipe up to explore
                     </p>
                   </div>
@@ -803,16 +839,15 @@ export function LockScreen({ onUnlock, onProgress }: LockScreenProps) {
               </div>
             </div>
 
-            {/* Do Not Disturb Pill */}
+            {/* Liquid Glass Do Not Disturb Pill */}
             <div ref={dndRef} className="mb-4 relative will-change-transform" aria-label="Do Not Disturb is on">
               <div
-                className="flex items-center gap-2 px-4 py-1.5 rounded-full text-white/85 text-sm font-medium"
+                className="flex items-center gap-2 px-4 py-1.5 rounded-full text-white/90 text-sm font-medium"
                 style={{
-                  background: "linear-gradient(135deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.05) 100%)",
-                  backdropFilter: "blur(16px)",
-                  WebkitBackdropFilter: "blur(16px)",
-                  border: "1px solid rgba(255,255,255,0.16)",
-                  boxShadow: "0 4px 14px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.2)",
+                  background: "linear-gradient(145deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.07) 100%)",
+                  border: "1px solid rgba(255,255,255,0.34)",
+                  boxShadow:
+                    "0 6px 18px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.55), inset 0 -1px 0 rgba(255,255,255,0.14)",
                 }}
               >
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -869,6 +904,7 @@ export function LockScreen({ onUnlock, onProgress }: LockScreenProps) {
               </div>
             </button>
           </div>
+        </div>
         </div>
       </div>
     </div>
