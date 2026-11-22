@@ -12,4 +12,13 @@ export default defineConfig({
   resolve: {
     tsconfigPaths: true,
   },
+  server: {
+    proxy: {
+      "/api/github-contributions": {
+        target: "https://github-contributions.vercel.app",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/github-contributions/, "/api/v1"),
+      },
+    },
+  },
 });

@@ -5,6 +5,12 @@
   "installCommand": "bun install",
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/api/github-contributions/:username",
+      "destination": "https://github-contributions.vercel.app/api/v1/:username"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

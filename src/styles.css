@@ -65,33 +65,28 @@
   }
 }
 
-/* ============ Cursor ============ */
-.cursor-dot,
-.cursor-ring {
+/* ============ macOS Custom Cursor ============ */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+.macos-cursor {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 10001;
   will-change: transform;
-  mix-blend-mode: difference;
+  transition: opacity 0.14s ease;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
 }
-.cursor-dot {
-  width: 6px; height: 6px;
-  background: white;
-  border-radius: 2px;
-  transform: translate(-50%, -50%);
+.macos-cursor-inner {
+  transform-origin: 4px 3px;
+  transition: transform 0.12s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.cursor-ring {
-  width: 28px; height: 28px;
-  border: 1.5px solid white;
-  border-radius: 4px;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s, border-radius 0.2s, background 0.2s;
-}
-.cursor-ring.hover {
-  width: 44px; height: 44px;
-  background: white;
-  mix-blend-mode: difference;
+.macos-cursor-inner.is-pressed {
+  transform: scale(0.92);
 }
 
 /* ============ Animations ============ */
