@@ -7,6 +7,8 @@ import { Skills } from "@/components/portfolio/Skills";
 import { WorkExperience } from "@/components/portfolio/WorkExperience";
 import { Contributions } from "@/components/portfolio/Contributions";
 import { Projects } from "@/components/portfolio/Projects";
+import { Research } from "@/components/portfolio/Research";
+import { Awards } from "@/components/portfolio/Awards";
 import { Uses } from "@/components/portfolio/Uses";
 import { LetsConnect } from "@/components/portfolio/LetsConnect";
 import { Footer } from "@/components/portfolio/Footer";
@@ -24,6 +26,8 @@ const SECTIONS = [
   WorkExperience,
   Contributions,
   Projects,
+  Research,
+  Awards,
   Uses,
   LetsConnect,
   Footer,
